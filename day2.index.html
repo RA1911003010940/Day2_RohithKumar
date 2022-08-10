@@ -1,0 +1,150 @@
+<head>
+
+    <title>
+        Pasta Recipes
+    </title>
+
+    <style>
+        body{
+            background-color: #B1E1FF;
+        }
+        .item-container{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            width: 400px;
+        }
+        .title{
+            display: flex;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heading">
+        <h1><center>Welcome to Rohith's Pasta House</center></h1>
+        <h2><center>Menu</center></h2>
+        <br>
+    </div>
+    
+    <div id="container" class="container">
+       <div class="item-container">
+           <h3>Creamy pasta with asparagus & peas</h3>
+           <img width=200px; src="cp.png" >
+           <p><b>Ingredients:</b></p>
+           <p>250g fusilli</p>
+           <p>300g asparagus spear</p>
+           <p>175g frozen pea</p>
+           <p>zest and juice ½ lemon</p>
+           <p>100g soft cheese</p>
+
+           <button class="remove-button">Remove</button>
+       </div>
+
+       <div class="item-container">
+        <h3>Cacio e pepe</h3>
+        <img width=200px; src="cep.png">
+        <p><b>Ingredients:</b></p>
+        <p>200g bucatini or spaghetti</p>
+        <p>25g butter</p>
+        <p>1 tsp freshly ground black pepper</p>
+        <p>50g pecorino or parmesan</p>
+        <button class="remove-button">Remove</button>
+       </div>
+
+    <div class="item-container">
+        <h3>Cheesy tuna pesto pasta</h3>
+        <img width=200px; src="ctp.png">
+        <p><b>Ingredients:</b></p>
+        <p>400g penne</p>
+        <p>200g can yellowfin tuna in olive oil</p>
+        <p>190g jar basil pesto</p>
+        <p>100g cheddar</p>
+        <p>250g punnet cherry tomato</p>
+        <button class="remove-button">Remove</button>
+    </div>
+
+    <div class="item-container">
+        <h3>Runner bean & prosciutto pasta</h3>
+        <img width=200px; src="rbp.png">
+        <p><b>Ingredients:</b></p>
+        <p>175g tagliatelle</p>
+        <p>200g runner bean</p>
+        <p>3 slices prosciutto</p>
+        <p>1 tbsp olive oil</p>
+        <p>2 rounded tbsp half-fat crème fraîche</p>
+        <button class="remove-button">Remove</button>
+    </div>
+
+    <div class="item-container">
+        <h3>Asparagus pasta with mint pesto</h3>
+        <img width=200px; src="app.png">
+        <p><b>Ingredients:</b></p>
+        <p>large bunch mint (about 80g)</p>
+        <p>250g tub ricotta</p>
+        <p>25g parmesan</p>
+        <p>400g farfalle</p>
+        <p>200g asparagus tips</p>
+        <button class="remove-button">Remove</button>
+    </div>
+
+    <div class="item-container">
+        <h3>Salmon & spinach pasta</h3>
+        <img width=200px; src="ssp.png">
+        <p><b>Ingredients:</b></p>
+        <p>200g penne</p>
+        <p>2 skinless salmon fillets</p>
+        <p>60g sundried tomatoes</p>
+        <p>80g bag spinach</p>
+        <button class="remove-button">Remove</button>
+    </div>
+
+    </div>
+
+    <div style="margin: 20px">
+        <input id="inputbox" type="text">
+        <button>Add Item</button>
+    </div>
+
+</body>
+
+<script>
+    
+    function removeItem(event) {
+        event.target.parentElement.remove()
+    }
+    
+    let removeButtons = document.getElementsByClassName('remove-button')
+
+    for(let i=0;i<removeButtons.length;i++) {
+        removeButtons[i].addEventListener("click",removeItem)
+    }
+        
+    function addItem() {
+        let itemToAdd = document.getElementById('inputbox').value
+        let htmlToAdd = `
+        <div class="item-container">
+            <h3>${itemToAdd}</h3>
+            <button onclick = "removeItem('${itemToAdd}')">Remove</button>
+        </div>`
+
+        let newElement = document.createElement('div')
+        newElement.innerHTML = htmlToAdd
+
+        document.getElementById('container').appendChild(newElement)
+         
+        document.getElementById("container").innerHTML += `
+        <div class="item-container">
+        <div class="title">${itemToAdd}</div>
+        <button onclick = "removeItem('${itemToAdd}')">Remove</button>
+        </div>
+        `
+
+    }
+</script>
